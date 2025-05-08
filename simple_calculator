@@ -1,0 +1,52 @@
+using System.Reflection.Metadata.Ecma335;
+using System.Xml.Serialization;
+
+namespace SimpleCalculator
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello ");
+            Console.WriteLine("Input the first number");
+            var firstASText=Console.ReadLine();
+            var number1=int.Parse(firstASText);
+
+
+            Console.WriteLine("Enter the second number");
+            var secondText=Console.ReadLine();
+            var number2 = int.Parse(secondText);
+
+            Console.WriteLine("What operation do u want to do");
+            Console.WriteLine("[A]add");
+            Console.WriteLine("[M]multiply");
+            Console.WriteLine("[s]subtract");
+
+            var choice=Console.ReadLine();
+
+            if(choice =="a"||choice =="A") 
+            {
+                var sum = number1 + number2;
+                Console.WriteLine(sum);
+             }
+
+           else if(choice=="b"||choice =="B")
+            {
+                var sum = number1 * number2;
+                Console.WriteLine(sum);
+
+            }
+            else if(choice=="C"||choice =="c")
+            {
+                var sum = number1 - number2;
+            }
+
+            else
+            {
+                Console.WriteLine("Eneter a valid option");
+            }
+
+
+        }
+    }
+}
