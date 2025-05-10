@@ -1,0 +1,61 @@
+🔸 Field
+A variable declared directly in a class.
+
+Used for internal storage of data.
+
+Usually marked private or protected.
+
+Can be accessed directly (though not recommended from outside the class).
+
+public class Person {
+    public string name; // Field
+}
+
+use:
+Person p = new Person();
+p.name = "Alice"; // Direct access to field
+
+
+🔸 Property
+A wrapper around a field, using get and set.
+
+Provides controlled access (encapsulation).
+
+Can include logic (e.g., validation, logging).
+
+Recommended over fields for public access.
+
+
+
+public class Person {
+    private string _name; // Backing field
+
+    public string Name { // Property
+        get { return _name; }
+        set {
+            if (!string.IsNullOrEmpty(value)) {
+                _name = value;
+            }
+        }
+    }
+}
+use:
+Person p = new Person();
+p.Name = "Bob"; // Uses set logic
+Console.WriteLine(p.Name); // Uses get logic
+
+✅ You can also use auto-properties:
+
+csharp
+Copy
+Edit
+public string Name { get; set; }
+
+
+| Feature       | Field               | Property                              |
+| ------------- | ------------------- | ------------------------------------- |
+| Purpose       | Store data directly | Provide access to data (with control) |
+| Encapsulation | ❌ No                | ✅ Yes (can have logic in get/set)     |
+| Access        | Direct              | Through getter/setter                 |
+| Syntax        | Simple variable     | Uses `{ get; set; }` syntax           |
+| Best for      | Internal logic      | Public-facing data access             |
