@@ -1,0 +1,69 @@
+In C#, const and readonly are also both used to define values that cannot be changed, but they work differently. Here's a clear explanation:
+
+🔸 const in C#
+Compile-time constant
+
+Value must be known at compile time
+
+Automatically static, shared across all instances
+
+Must be initialized where it's declared
+
+Cannot be changed later
+Example:
+public class MyClass {
+    public const double Pi = 3.14159;
+}
+
+// Usage
+Console.WriteLine(MyClass.Pi); // 3.14159
+You cannot do this:
+
+csharp
+Copy
+Edit
+public const int RandomValue = new Random().Next(); // ❌ Error
+
+
+
+
+ readonly in C#
+Run-time constant
+
+Value can be set only in:
+
+Declaration
+
+Constructor
+
+Can have different values per object instance
+
+Can be used with reference types too
+
+public class MyClass {
+    public readonly int ID;
+
+    public MyClass(int id) {
+        ID = id; // ✅ Allowed
+    }
+}
+
+⛔ You cannot do this later:
+
+csharp
+Copy
+Edit
+MyClass obj = new MyClass(1);
+obj.ID = 5; // ❌ Error: Cannot assign to readonly field
+
+
+
+
+
+| Feature        | `const`                        | `readonly`                            |
+| -------------- | ------------------------------ | ------------------------------------- |
+| Value          | Must be known at compile time  | Can be set at runtime in constructor  |
+| Modifier       | Implicitly static              | Can be static or instance             |
+| Use case       | Fixed values like Pi, max size | Per-object values set once (e.g., ID) |
+| Initialization | At declaration only            | At declaration or constructor         |
+
