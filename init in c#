@@ -1,0 +1,41 @@
+✅ init in C#
+The **init** accessor in C# is a feature introduced in C# 9.0 that allows properties to be set only during object initialization, not afterward. It’s like a set accessor, but it locks the value after construction.
+
+🔧 Syntax:
+csharp
+Copy
+Edit
+public class Person
+{
+    public string Name { get; init; }
+}
+✅ Example Usage:
+csharp
+Copy
+Edit
+var person = new Person { Name = "Alice" };
+Console.WriteLine(person.Name); // Output: Alice
+
+// person.Name = "Bob"; ❌ Error: Cannot assign to init-only property
+🧠 Why use init?
+Promotes immutability while keeping object initializers readable.
+
+Prevents accidental modification after the object is constructed.
+
+💡 Comparison: set vs init
+Feature	set	init
+Set in constructor or initializer	✅ Yes	✅ Yes
+Set after creation	✅ Yes	❌ No
+Supports immutability	❌ No	✅ Yes
+
+🔒 Works well with records:
+csharp
+Copy
+Edit
+public record Person
+{
+    public string Name { get; init; }
+}
+Records and init work together to create clean, immutable data models.
+
+Let me know if you want a version-safe alternative (e.g., for older C# versions).
