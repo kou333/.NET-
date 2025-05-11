@@ -1,0 +1,72 @@
+✅ Repository in C#
+The Repository Pattern in C# is a design pattern used to abstract the data access layer. It provides a clean separation between business logic and data access logic, and makes your code easier to test, maintain, and swap out (e.g., changing from SQL Server to MongoDB without breaking business logic).
+
+🔧 Basic Structure
+Let’s take an example of a simple Product entity.
+
+1. Entity
+csharp
+Copy
+Edit
+public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+2. Repository Interface (Abstraction)
+csharp
+Copy
+Edit
+public interface IProductRepository
+{
+    IEnumerable<Product> GetAll();
+    Product GetById(int id);
+    void Add(Product product);
+    void Delete(int id);
+}
+3. Concrete Repository (Implementation)
+csharp
+Copy
+Edit
+public class ProductRepository : IProductRepository
+{
+    private readonly List<Product> _products = new();
+
+    public IEnumerable<Product> GetAll() => _products;
+
+    public Product GetById(int id) => _products.FirstOrDefault(p => p.Id == id);
+
+    public void Add(Product product) => _products.Add(product);
+
+    public void Delete(int id)
+    {
+        var product = GetById(id);
+        if (product != null) _products.Remove(product);
+    }
+}
+4. Using the Repository
+csharp
+Copy
+Edit
+class Program
+{
+    static void Main()
+    {
+        IProductRepository repo = new ProductRepository();
+
+        repo.Add(new Product { Id = 1, Name = "Laptop" });
+        repo.Add(new Product { Id = 2, Name = "Phone" });
+
+        foreach (var product in repo.GetAll())
+        {
+            Console.WriteLine($"{product.Id}: {product.Name}");
+        }
+    }
+}
+🧠 Benefits of Repository Pattern
+Feature	Benefit
+Abstraction	Decouples data access from logic
+Testability	Easy to mock repositories
+Maintainability	Clean and modular code
+Flexibility	Easily switch data sources
+
