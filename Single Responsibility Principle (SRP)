@@ -1,0 +1,62 @@
+✅ Single Responsibility Principle (SRP) – C# Explanation
+The Single Responsibility Principle (SRP) is the "S" in SOLID principles of object-oriented design.
+It states:
+
+"A class should have only one reason to change."
+
+This means a class should do only one thing, and all its methods should relate to that responsibility.
+
+🔧 Real-World Analogy
+Think of a printer:
+
+One class should handle printing.
+
+Another class should handle saving logs.
+
+A third class could handle sending notifications.
+
+Don’t put all these in one class — that would violate SRP.
+
+❌ Violating SRP (Bad Design)
+csharp
+Copy
+Edit
+public class Report
+{
+    public string Title { get; set; }
+
+    public void Generate() { /* logic */ }
+
+    public void SaveToFile(string path) { /* file I/O logic */ }
+
+    public void SendEmail(string address) { /* email logic */ }
+}
+❌ This class does too much: generating data, saving files, and sending emails. Each is a separate responsibility.
+
+✅ Following SRP (Good Design)
+csharp
+Copy
+Edit
+public class Report
+{
+    public string Title { get; set; }
+    public void Generate() { /* only generation logic */ }
+}
+
+public class ReportSaver
+{
+    public void SaveToFile(Report report, string path) { /* file save logic */ }
+}
+
+public class EmailService
+{
+    public void SendReport(Report report, string email) { /* email logic */ }
+}
+✅ Now each class has one clear job and will only change if that specific job needs to be updated.
+
+🔄 Summary
+Concept	Bad Example	Good Example
+Handles multiple concerns	One class does everything	Separate classes per concern
+Hard to test and maintain	✅	❌
+Single reason to change	❌	✅
+
