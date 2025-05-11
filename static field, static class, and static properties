@@ -1,0 +1,84 @@
+✅ 1. Static Field
+A static field belongs to the class itself, not to any specific object (instance).
+
+Only one copy exists, no matter how many objects are created.
+
+Use it to share data across all instances.
+
+class Counter
+{
+    public static int count = 0; // static field
+
+    public Counter()
+    {
+        count++; // shared across all Counter objects
+    }
+}
+
+
+Counter c1 = new Counter();
+Counter c2 = new Counter();
+Console.WriteLine(Counter.count); // Output: 2
+
+
+✅ 2. Static Class
+A static class cannot be instantiated.
+
+It can only contain static members (fields, properties, methods).
+
+Useful for utility or helper methods.
+
+Example:
+csharp
+Copy
+Edit
+static class MathUtil
+{
+    public static int Square(int num)
+    {
+        return num * num;
+    }
+}
+csharp
+Copy
+Edit
+Console.WriteLine(MathUtil.Square(5)); // Output: 25
+
+
+
+
+✅ 3. Static Properties
+A static property is a property that belongs to the class, not to an instance.
+
+Often used to control access to static fields.
+
+Example:
+csharp
+Copy
+Edit
+class Config
+{
+    private static string _version = "1.0";
+
+    public static string Version // static property
+    {
+        get { return _version; }
+        set { _version = value; }
+    }
+}
+csharp
+Copy
+Edit
+Console.WriteLine(Config.Version); // Output: 1.0
+Config.Version = "2.0";
+Console.WriteLine(Config.Version); // Output: 2.0
+
+
+SUMMARY
+
+🧠 Summary:
+Feature	Description	Can You Access Without Object?
+static field	Shared variable across all objects	✅ Yes
+static class	Can't create object; holds only static stuff	✅ Yes
+static property	Controls access to static data	✅ Yes
+
