@@ -1,0 +1,47 @@
+✅ Optional Parameters in C#
+In C#, an optional parameter is a method parameter that has a default value. You can omit it when calling the method — the compiler will use the default value.
+
+🔧 Syntax
+csharp
+Copy
+Edit
+void Greet(string name = "Guest")
+{
+    Console.WriteLine($"Hello, {name}!");
+}
+✅ Example Usage
+csharp
+Copy
+Edit
+Greet();             // Output: Hello, Guest!
+Greet("Koustubh");   // Output: Hello, Koustubh!
+📌 Rules for Optional Parameters
+Optional parameters must come after all required parameters.
+
+You can specify default values using:
+
+Constants (like strings, numbers)
+
+null
+
+Expressions are not allowed.
+
+🔄 Mixing Required and Optional
+csharp
+Copy
+Edit
+void OrderPizza(string size, bool extraCheese = false)
+{
+    Console.WriteLine($"Size: {size}, Extra Cheese: {extraCheese}");
+}
+
+OrderPizza("Large");                    // Output: Size: Large, Extra Cheese: False
+OrderPizza("Medium", true);             // Output: Size: Medium, Extra Cheese: True
+🧠 Tip:
+If you have many optional parameters, consider using:
+
+Method overloading
+
+params keyword
+
+Object initializers (with a custom options class)
