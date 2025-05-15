@@ -1,0 +1,47 @@
+In C# 12, the spread operator (..) is used inside collection expressions to expand or "spread" the contents of an existing collection into a new one.
+
+🔹 Syntax
+csharp
+Copy
+Edit
+var numbers1 = [1, 2, 3];
+var numbers2 = [..numbers1, 4, 5]; // Expands numbers1 into the new array
+🔹 Example: Combining Arrays
+csharp
+Copy
+Edit
+int[] a = [1, 2];
+int[] b = [3, 4];
+int[] result = [..a, ..b, 5];
+// result = [1, 2, 3, 4, 5]
+🔹 Example: With List
+csharp
+Copy
+Edit
+List<string> fruits = ["apple", "banana"];
+List<string> moreFruits = [..fruits, "orange", "kiwi"];
+🔹 Example: Mixed Values
+csharp
+Copy
+Edit
+var mixed = [10, ..[20, 30], 40];
+// mixed = [10, 20, 30, 40]
+🔹 Rules and Notes
+Rule	Description
+✅ Allowed only inside collection expressions (e.g., [1, ..a])	
+✅ Works with arrays, spans, lists, etc.	
+❌ Cannot be used outside a collection expression	
+✅ Can be nested (e.g., [1, ..[..a, 2]])	
+
+🔹 Use Case: Merge Lists/Arrays Cleanly
+csharp
+Copy
+Edit
+var odds = [1, 3, 5];
+var evens = [2, 4, 6];
+var allNumbers = [..odds, ..evens]; // [1, 3, 5, 2, 4, 6]
+🔧 Requirements
+C# 12
+
+.NET 8 (or a compatible C# 12 compiler)
+
