@@ -1,0 +1,60 @@
+In C# 11, the required modifier was introduced to enforce mandatory property initialization when creating an object. It helps ensure that certain members of a class must be initialized either via an object initializer or a constructor.
+
+🔹 Syntax:
+csharp
+Copy
+Edit
+public class Person
+{
+    public required string Name { get; set; }
+    public int Age { get; set; }
+}
+Now, when you create a Person object, Name must be set, or you'll get a compiler error:
+
+csharp
+Copy
+Edit
+var person = new Person
+{
+    Name = "Alice",  // ✅ Required property set
+    Age = 30
+};
+If you omit Name:
+
+csharp
+Copy
+Edit
+var person = new Person
+{
+    Age = 30
+};
+// ❌ Compiler error: required member 'Person.Name' must be set
+🔹 Why use required?
+Makes your object model safer and more predictable.
+
+Avoids bugs caused by forgetting to initialize important properties.
+
+A cleaner alternative to constructor-based enforcement in some cases.
+
+🔹 Combined with constructors:
+You can still use constructors with required members, but the object initializer must still satisfy all required properties unless the constructor sets them:
+
+csharp
+Copy
+Edit
+public class Employee
+{
+    public required string Id { get; set; }
+    public string Department { get; set; }
+
+    public Employee()
+    {
+        // You could set Id here to satisfy the requirement
+    }
+}
+🔹 Limitations:
+Available in C# 11+ only.
+
+Must use with init or set accessors.
+
+Not enforced at runtime — it's a compile-time feature.
