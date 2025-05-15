@@ -1,0 +1,53 @@
+In C# 11 and later, raw string literals were introduced to make multi-line and complex strings (like JSON, XML, or code snippets) easier to read and write without escaping special characters.
+
+Syntax
+csharp
+Copy
+Edit
+string myRawString = """
+    This is a "raw string"
+    that preserves formatting,
+    includes "quotes" and \backslashes\,
+    and spans multiple lines.
+    """;
+Key Features:
+Use triple double quotes (""") to start and end the raw string.
+
+Supports multi-line strings.
+
+No need to escape quotes (") or backslashes (\).
+
+The indentation is preserved.
+
+Example 1: Multi-line string
+csharp
+Copy
+Edit
+string sqlQuery = """
+    SELECT * 
+    FROM Users
+    WHERE Age > 18;
+    """;
+Example 2: Including quotes and backslashes
+csharp
+Copy
+Edit
+string json = """
+    {
+        "name": "Alice",
+        "path": "C:\\Users\\Alice"
+    }
+    """;
+Example 3: Using more quotes inside
+If your string contains """, you can add more quotes at the start and end, like """":
+
+csharp
+Copy
+Edit
+string tricky = """""
+    This string contains """ triple quotes inside.
+    """"";
+Requirements
+Available in C# 11 and later.
+
+Ensure your project is targeting .NET 7.0 or higher or using a recent C# compiler.
