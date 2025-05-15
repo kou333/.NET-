@@ -1,0 +1,60 @@
+In C#, a structure (struct) is a value type that is used to group related variables (fields) under a single name, like a lightweight version of a class. Structures are typically used for small, simple objects such as points, rectangles, or colors.
+
+🔹 Basic Syntax
+csharp
+Copy
+Edit
+public struct Point
+{
+    public int X;
+    public int Y;
+
+    public Point(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
+
+    public void Display()
+    {
+        Console.WriteLine($"X: {X}, Y: {Y}");
+    }
+}
+🔹 Usage
+csharp
+Copy
+Edit
+Point p = new Point(5, 10);
+p.Display(); // Output: X: 5, Y: 10
+🔹 Key Features of struct in C#:
+Feature	Description
+Value Type	Stored on the stack, copied by value.
+Cannot Inherit	Structs cannot inherit from another struct or class.
+Can Implement Interfaces	Yes, structs can implement interfaces.
+Default Constructor	Automatically provided (sets fields to default values). Custom parameterless constructors are allowed in C# 10+.
+No Finalizer	Structs cannot have a destructor.
+Useful for lightweight objects	e.g., representing coordinates, measurements, etc.
+
+🔹 Example with interface
+csharp
+Copy
+Edit
+public interface IShape
+{
+    double GetArea();
+}
+
+public struct Rectangle : IShape
+{
+    public double Width;
+    public double Height;
+
+    public Rectangle(double w, double h)
+    {
+        Width = w;
+        Height = h;
+    }
+
+    public double GetArea() => Width * Height;
+}
+Would you like a comparison between struct and class in a table format?
