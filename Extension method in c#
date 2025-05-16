@@ -1,0 +1,58 @@
+In C#, extension methods allow you to "add" new methods to existing types (like string, int, custom classes, etc.) without modifying the original type or using inheritance.
+
+They are static methods defined in static classes, but they behave as if they are instance methods on the type you're extending.
+
+🔹 Syntax
+csharp
+Copy
+Edit
+public static class MyExtensions
+{
+    public static int WordCount(this string str)
+    {
+        return str.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length;
+    }
+}
+this string str → string is the type you're extending.
+
+WordCount() → becomes available on any string instance.
+
+🔹 Usage
+csharp
+Copy
+Edit
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string message = "Hello world from C#";
+        int count = message.WordCount(); // ✅ Looks like a regular method
+        Console.WriteLine(count); // Output: 4
+    }
+}
+✅ You must include the namespace containing the extension method, or use a using directive.
+
+🔹 Rules for Extension Methods
+Rule	Explanation
+Must be in a static class	The method itself must also be static.
+First parameter must be prefixed with this	It tells the compiler which type you are extending.
+Can extend any accessible type	Even built-in types or interfaces.
+Cannot override existing methods	But you can shadow (hide) them if needed.
+
+🔹 Example: Extension for int
+csharp
+Copy
+Edit
+public static class IntExtensions
+{
+    public static bool IsEven(this int number)
+    {
+        return number % 2 == 0;
+    }
+}
+
+// Usage:
+int x = 42;
+bool result = x.IsEven(); // ✅ true
