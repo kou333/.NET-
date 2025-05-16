@@ -1,0 +1,53 @@
+In C#, the sealed keyword is used to prevent inheritance. You can apply it to:
+
+Classes → to stop any other class from inheriting it.
+
+Methods → to stop further overriding of a method in derived classes (only used with override methods).
+
+🔹 1. sealed Class
+✅ Syntax:
+csharp
+Copy
+Edit
+sealed class Animal
+{
+    public void Speak() => Console.WriteLine("Animal speaks");
+}
+❌ Not allowed:
+csharp
+Copy
+Edit
+class Dog : Animal // ❌ Error: 'Animal' is sealed and cannot be inherited
+{
+}
+🔹 2. sealed Method
+Only applies when overriding a method from a base class.
+
+Prevents further overrides in subclasses.
+
+✅ Syntax:
+csharp
+Copy
+Edit
+class Base
+{
+    public virtual void Show() => Console.WriteLine("Base Show");
+}
+
+class Derived : Base
+{
+    public sealed override void Show() => Console.WriteLine("Derived Show");
+}
+
+class MoreDerived : Derived
+{
+    // ❌ This will cause an error:
+    // public override void Show() { } // Cannot override sealed method
+}
+🧠 Why use sealed?
+To prevent misuse through unintended inheritance.
+
+To improve performance (JIT compiler can optimize sealed classes/methods).
+
+To enforce strict control over extensibility of a class or method.
+
