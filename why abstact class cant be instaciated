@@ -1,0 +1,58 @@
+❓ Why can’t an abstract class be instantiated, even if it has concrete methods?
+✅ Quick Answer:
+An abstract class is incomplete by design. It may have some concrete (fully written) methods, but it is expected to be extended by another class that completes its definition.
+
+You can’t create an object from something that is not fully defined.
+
+🧠 Think of it like this:
+Imagine a blueprint for a vehicle that says:
+
+✅ It has a method StartEngine() already implemented.
+
+❌ But it also says "Drive()" must be defined by the child class.
+
+If you try to create a Vehicle object, C# says:
+
+"Wait! 'Drive()' is missing. You need to make a real version (like Car or Bike) that fills in the missing part first!"
+
+📦 Code Example:
+csharp
+Copy
+Edit
+public abstract class Vehicle {
+    public void StartEngine() {
+        Console.WriteLine("Engine started");
+    }
+
+    public abstract void Drive();  // No implementation
+}
+✅ This is OK:
+
+csharp
+Copy
+Edit
+public class Car : Vehicle {
+    public override void Drive() {
+        Console.WriteLine("Driving the car...");
+    }
+}
+
+class Program {
+    static void Main() {
+        Vehicle myCar = new Car(); // This is allowed
+        myCar.StartEngine();
+        myCar.Drive();
+    }
+}
+❌ This is NOT allowed:
+
+csharp
+Copy
+Edit
+Vehicle v = new Vehicle(); // ❌ Error: Cannot create an instance of the abstract class
+🔑 Summary:
+Feature	Abstract Class	Regular Class
+Can have implemented methods?	✅ Yes	✅ Yes
+Can have abstract methods?	✅ Yes	❌ No
+Can be instantiated directly?	❌ No (incomplete)	✅ Yes
+Must be inherited to use?	✅ Yes	❌ No
