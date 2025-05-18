@@ -1,0 +1,108 @@
+ Dependency Inversion is a principle saying that a class should depend on abstractions, not on concrete types.
+🔧 What is Dependency Inversion in C#?
+The Dependency Inversion Principle (DIP) is the D in SOLID principles.
+It means:
+
+High-level modules should not depend on low-level modules. Both should depend on abstractions.
+
+In simpler terms:
+
+Classes should depend on interfaces or abstract classes, not concrete classes.
+
+This helps you change code easily, reuse components, and write better unit tests.
+
+🧠 Real-World Analogy
+Imagine a universal remote. It doesn’t care what brand of TV or fan it controls — as long as the device follows a common interface like "TurnOn", it works.
+
+That’s how we want our software: flexible and decoupled.
+
+🚫 Without DIP (Bad Design)
+csharp
+Copy
+Edit
+public class LightBulb {
+    public void TurnOn() {
+        Console.WriteLine("LightBulb turned ON");
+    }
+}
+
+public class Switch {
+    private LightBulb bulb = new LightBulb(); // tightly coupled
+
+    public void Operate() {
+        bulb.TurnOn();
+    }
+}
+❌ Problem:
+
+Switch can only work with LightBulb.
+
+If you want to add a Fan, you must change the Switch class.
+
+✅ With DIP (Good Design)
+Step-by-step:
+Create an interface:
+
+csharp
+Copy
+Edit
+public interface IDevice {
+    void TurnOn();
+}
+Implement it in multiple classes:
+
+csharp
+Copy
+Edit
+public class LightBulb : IDevice {
+    public void TurnOn() {
+        Console.WriteLine("LightBulb turned ON");
+    }
+}
+
+public class Fan : IDevice {
+    public void TurnOn() {
+        Console.WriteLine("Fan turned ON");
+    }
+}
+Use the abstraction in the Switch class:
+
+csharp
+Copy
+Edit
+public class Switch {
+    private IDevice device;
+
+    public Switch(IDevice device) {
+        this.device = device;
+    }
+
+    public void Operate() {
+        device.TurnOn();
+    }
+}
+Main method to test:
+
+csharp
+Copy
+Edit
+class Program {
+    static void Main(string[] args) {
+        IDevice bulb = new LightBulb();
+        IDevice fan = new Fan();
+
+        Switch bulbSwitch = new Switch(bulb);
+        Switch fanSwitch = new Switch(fan);
+
+        bulbSwitch.Operate(); // LightBulb turned ON
+        fanSwitch.Operate();  // Fan turned ON
+    }
+}
+💡 Benefits of DIP in C#
+✅ Code becomes flexible and extensible.
+
+✅ Easy to test using mock interfaces.
+
+✅ Promotes separation of concerns.
+
+✅ Supports Dependency Injection (DI) frameworks like ASP.NET Core’s built-in DI container.
