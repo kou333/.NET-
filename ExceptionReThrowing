@@ -1,0 +1,64 @@
+✅ Exception Rethrowing in C#
+Exception rethrowing is the act of throwing an exception again after catching it — often for logging or cleanup — while allowing it to propagate further up the call stack.
+
+There are two main ways to rethrow an exception in C#:
+
+🔁 1. Using throw; (Preserves original stack trace ✅)
+csharp
+Copy
+Edit
+try
+{
+    // some code that causes an exception
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Logging: " + ex.Message);
+    throw; // rethrows the original exception
+}
+✅ Best practice: This keeps the original stack trace, which is important for debugging.
+
+🔁 2. Using throw ex; (Resets stack trace ❌)
+csharp
+Copy
+Edit
+try
+{
+    // some code that causes an exception
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Logging: " + ex.Message);
+    throw ex; // rethrows the exception but resets stack trace
+}
+❌ Not recommended: It resets the stack trace, making it harder to track where the error originally occurred.
+
+🔍 Example to Illustrate the Difference
+csharp
+Copy
+Edit
+void Method1()
+{
+    try
+    {
+        Method2();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("In Method1 catch block");
+        throw; // or throw ex;
+    }
+}
+
+void Method2()
+{
+    throw new InvalidOperationException("Something went wrong");
+}
+With throw;, the exception points to Method2 where it occurred.
+
+With throw ex;, the exception points to Method1, which is misleading.
+
+✅ Summary
+Syntax	Stack Trace Preserved	Use When
+throw;	✅ Yes	Always preferred
+throw ex;	❌ No	Only if modifying exception before rethrow
