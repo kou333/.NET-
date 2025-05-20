@@ -1,0 +1,53 @@
+Here's a clear comparison of throw vs throw ex in C#:
+
+✅ throw vs throw ex
+Feature	throw	throw ex
+Preserves Stack Trace	✅ Yes	❌ No (resets stack trace)
+Recommended?	✅ Yes (Best Practice)	❌ No (use only with modifications)
+Usage Purpose	Rethrow the original exception	Rethrow or modify the caught exception
+Common Use Case	Logging, cleanup, then rethrow	When wrapping in a new exception
+
+🔁 throw — Preserves original error location
+csharp
+Copy
+Edit
+try
+{
+    SomeMethod();
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Log: " + ex.Message);
+    throw; // rethrows while keeping the original stack trace
+}
+📌 This is the correct way if you just want to log or handle temporarily, then pass it on.
+
+🚫 throw ex — Resets stack trace
+csharp
+Copy
+Edit
+try
+{
+    SomeMethod();
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Log: " + ex.Message);
+    throw ex; // rethrows but stack trace now starts here ❌
+}
+📌 This hides where the error actually occurred, which is bad for debugging.
+
+💡 When to use throw ex
+Use throw ex only when you're wrapping or modifying the exception:
+
+csharp
+Copy
+Edit
+catch (Exception ex)
+{
+    throw new CustomException("Additional context", ex); // wrapping
+}
+✅ TL;DR
+Use throw if you're rethrowing the same exception.
+
+Avoid throw ex unless you're creating a new or custom exception.
