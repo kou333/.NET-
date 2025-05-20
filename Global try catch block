@@ -1,0 +1,89 @@
+In C#, a "global try-catch block" means handling unhandled exceptions that escape your usual try-catch statements. These global handlers are used to prevent application crashes and log unexpected errors.
+
+✅ Global Exception Handling in C#
+1. Console Application
+Use AppDomain.CurrentDomain.UnhandledException:
+
+csharp
+Copy
+Edit
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+        {
+            Console.WriteLine("Global exception caught: " + ((Exception)e.ExceptionObject).Message);
+        };
+
+        // Simulate unhandled exception
+        throw new InvalidOperationException("Unexpected error occurred!");
+    }
+}
+2. Windows Forms Application
+Use Application.ThreadException and AppDomain.CurrentDomain.UnhandledException:
+
+csharp
+Copy
+Edit
+static void Main()
+{
+    Application.ThreadException += (sender, e) =>
+    {
+        MessageBox.Show("Thread exception: " + e.Exception.Message);
+    };
+
+    AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+    {
+        MessageBox.Show("Unhandled exception: " + ((Exception)e.ExceptionObject).Message);
+    };
+
+    Application.Run(new Form1());
+}
+3. WPF Application
+Use the following in App.xaml.cs:
+
+csharp
+Copy
+Edit
+public partial class App : Application
+{
+    public App()
+    {
+        this.DispatcherUnhandledException += (sender, e) =>
+        {
+            MessageBox.Show("WPF Dispatcher exception: " + e.Exception.Message);
+            e.Handled = true;
+        };
+
+        AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+        {
+            MessageBox.Show("AppDomain exception: " + ((Exception)e.ExceptionObject).Message);
+        };
+    }
+}
+4. ASP.NET Core Web Application
+Use middleware for global exception handling:
+
+csharp
+Copy
+Edit
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        var errorFeature = context.Features.Get<IExceptionHandlerFeature>();
+        var exception = errorFeature?.Error;
+
+        context.Response.StatusCode = 500;
+        await context.Response.WriteAsync("Global Error: " + exception?.Message);
+    });
+});
+✅ Best Practices
+Always log the exception details (message, stack trace).
+
+Avoid showing internal exception details to users in production.
+
+Use global handling only as a safety net; still use local try-catch for predictable errors.
