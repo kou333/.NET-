@@ -1,0 +1,36 @@
+In C#, built-in exceptions (also known as predefined exceptions) are part of the .NET Framework and are derived from the base class System.Exception. These exceptions handle common error scenarios like null references, out-of-range indexes, division by zero, etc.
+
+Here are some commonly used built-in exceptions in C#:
+
+Exception Class	Description
+System.Exception	Base class for all exceptions.
+System.SystemException	Base class for all predefined system exceptions.
+System.NullReferenceException	Thrown when trying to access a member on a null object.
+System.IndexOutOfRangeException	Thrown when an index is outside the bounds of an array or collection.
+System.DivideByZeroException	Thrown when there is an attempt to divide by zero.
+System.InvalidOperationException	Thrown when a method call is invalid for the object’s current state.
+System.ArgumentException	Thrown when an invalid argument is passed to a method.
+System.ArgumentNullException	Thrown when a null is passed to a method that doesn't accept it.
+System.ArgumentOutOfRangeException	Thrown when an argument is outside the allowed range.
+System.IO.IOException	Base class for IO related exceptions.
+System.FileNotFoundException	Thrown when a file is not found.
+System.FormatException	Thrown when the format of an argument is invalid.
+System.OverflowException	Thrown when an arithmetic operation results in an overflow.
+System.NotImplementedException	Thrown when a requested method or operation is not implemented.
+System.NotSupportedException	Thrown when a method or operation is not supported.
+System.OutOfMemoryException	Thrown when the system runs out of memory.
+System.StackOverflowException	Thrown when the execution stack overflows (usually due to recursion).
+
+Example: Using built-in exceptions
+csharp
+Copy
+Edit
+try
+{
+    int[] arr = new int[3];
+    Console.WriteLine(arr[5]); // IndexOutOfRangeException
+}
+catch (IndexOutOfRangeException ex)
+{
+    Console.WriteLine("Caught exception: " + ex.Message);
+}
