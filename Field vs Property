@@ -1,0 +1,50 @@
+❓Why use both: a field and a property?
+Purpose	Field (Marks)	Property (marks)
+Storage	Actually holds the data	Used to control access to the field
+Validation	Not directly validated	Can include validation or logic
+Encapsulation	Hidden from outside code	Publicly exposes data in a controlled way
+
+✅ Summary
+You need both:
+
+Marks: to store the value privately.
+
+marks: to control access to that value (with validation).
+
+This is an example of encapsulation, a core concept in object-oriented programming.
+
+
+
+Great question! Let's break it down clearly and simply.
+
+In your code:
+
+csharp
+Copy
+Edit
+public int marks
+{
+    get { return Marks; }
+
+    set
+    {
+        if (value < 0)
+        {
+            Console.WriteLine("The value should be greater than 0");
+        }
+        else
+        {
+            Marks = value;
+        }
+    }
+}
+🔍 What’s Happening Here?
+marks is a property.
+
+Marks (capital M) is a private field declared like this:
+
+csharp
+Copy
+Edit
+int Marks;
+marks (lowercase m) is the property that controls how Marks is accessed or changed from outside the class.
