@@ -1,0 +1,275 @@
+ using System.Security.Cryptography.X509Certificates;
+
+namespace LibraryProject4
+{
+    internal class Program
+    {
+
+
+        class Player
+        {
+            int     _TshirtNo;
+            String _PlayerName;
+            String _TeamName;
+            String _Country;
+            Double _Renumeration;
+
+            public int TshirtNo
+            {
+                get { return _TshirtNo; }
+
+                set
+                {
+                    if (value <= 0 || _TshirtNo == value)
+                    {
+                        Console.WriteLine("The value cant be zero or value repeated");
+                    }
+
+                    else
+                    {
+                        _TshirtNo =value ;
+                    }
+                }
+            }
+
+
+
+
+
+            public String TeamName
+            {
+                get { return _TeamName; }
+                set
+                {
+                    if (value == null)
+                    {
+                        Console.WriteLine("The value cant be null");
+                    }
+                    else
+                    {
+                        _TeamName  =value;
+                    }
+                }
+            }
+
+
+
+
+            public String Country
+            {
+                get
+                {
+                    return _Country;
+                }
+                set
+                {
+                    if (value == null)
+                    {
+                        Console.WriteLine("The value cant be null");
+
+                    }
+                    else
+                    {
+                        _Country = value;
+                    }
+
+
+                }
+            }
+
+            public String PlayerName
+            {
+                get { return _PlayerName; }
+
+                set
+                {
+                    if (value == null)
+                    {
+                        Console.WriteLine("The name cannot be null");
+                    }
+
+                    else { _PlayerName = value; }
+
+                }
+            }
+
+            public double Remuneration
+            {
+                get { return _Renumeration; }
+                set
+                {
+                    if (value < 0)
+                        throw new ArgumentException("Remuneration cannot be negative.");
+
+                    else { _Renumeration = value; }
+
+      
+                }
+            }
+
+            public double GetRemuneration()
+            {
+                return _Renumeration;
+            }
+
+
+        }
+
+
+
+
+
+
+
+        static void Main(string[] args)
+        {
+            Player player = new Player();
+            {
+                player.TshirtNo = 10;
+                player.PlayerName = "Virat Kohli";
+                player.TeamName = "RCB";
+                player.Country = "India";
+                player.Remuneration = 2500000.75;
+
+                Console.WriteLine($"Player: {player.PlayerName}");
+                Console.WriteLine($"Team: {player.TeamName}");
+                Console.WriteLine($"Country: {player.Country}");
+                Console.WriteLine($"T-Shirt No: {player.TshirtNo}");
+                Console.WriteLine($"Remuneration: ₹{player.GetRemuneration()}");
+            }
+      
+
+
+        }
+    }
+}
+
+
+
+///////   Second Way
+
+
+using System;
+
+namespace LibraryProject4
+{
+    internal class Program
+    {
+        class Player
+        {
+            int _TshirtNo;
+            string _PlayerName;
+            string _TeamName;
+            string _Country;
+            double _Remuneration;
+
+            // Default Constructor
+            public Player() { }
+
+            // Parameterized Constructor
+            public Player(int tshirtNo, string playerName, string teamName, string country, double remuneration)
+            {
+                TshirtNo = tshirtNo;
+                PlayerName = playerName;
+                TeamName = teamName;
+                Country = country;
+                Remuneration = remuneration;
+            }
+
+            public int TshirtNo
+            {
+                get { return _TshirtNo; }
+                set
+                {
+                    if (value <= 0)
+                        Console.WriteLine("T-shirt number must be positive.");
+                    else
+                        _TshirtNo = value;
+                }
+            }
+
+            public string PlayerName
+            {
+                get { return _PlayerName; }
+                set
+                {
+                    if (string.IsNullOrWhiteSpace(value))
+                        Console.WriteLine("Player name cannot be empty.");
+                    else
+                        _PlayerName = value;
+                }
+            }
+
+            public string TeamName
+            {
+                get { return _TeamName; }
+                set
+                {
+                    if (string.IsNullOrWhiteSpace(value))
+                        Console.WriteLine("Team name cannot be empty.");
+                    else
+                        _TeamName = value;
+                }
+            }
+
+            public string Country
+            {
+                get { return _Country; }
+                set
+                {
+                    if (string.IsNullOrWhiteSpace(value))
+                        Console.WriteLine("Country cannot be empty.");
+                    else
+                        _Country = value;
+                }
+            }
+
+            public double Remuneration
+            {
+                get { return _Remuneration; }
+                set
+                {
+                    if (value < 0)
+                        Console.WriteLine("Remuneration cannot be negative.");
+                    else
+                        _Remuneration = value;
+                }
+            }
+
+            // Method to Set Data
+            public void SetData(int tshirtNo, string playerName, string teamName, string country, double remuneration)
+            {
+                TshirtNo = tshirtNo;
+                PlayerName = playerName;
+                TeamName = teamName;
+                Country = country;
+                Remuneration = remuneration;
+            }
+
+            // Method to Display Data
+            public void DisplayData()
+            {
+                Console.WriteLine("----- Player Details -----");
+                Console.WriteLine($"Player: {PlayerName}");
+                Console.WriteLine($"Team: {TeamName}");
+                Console.WriteLine($"Country: {Country}");
+                Console.WriteLine($"T-Shirt No: {TshirtNo}");
+                Console.WriteLine($"Remuneration: ₹{Remuneration}");
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            // Using default constructor and SetData()
+            Player player1 = new Player();
+            player1.SetData(18, "Virat Kohli", "RCB", "India", 2500000.75);
+            player1.DisplayData();
+
+            Console.WriteLine();
+
+            // Using parameterized constructor
+            Player player2 = new Player(7, "MS Dhoni", "CSK", "India", 3000000.50);
+            player2.DisplayData();
+        }
+    }
+}
