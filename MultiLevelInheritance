@@ -85,3 +85,19 @@ class Program
         r.ShowResult();
     }
 }
+
+output Enter Roll No: 1
+Enter Name: kk
+Enter marks for Subject 1: 90
+Enter marks for Subject 2: 90
+Enter marks for Subject 4: 90
+Enter marks for Subject 5: 90
+Enter Sports Marks: 8
+
+----- Final Report -----
+Roll No: 1
+Name: kk
+Total Marks (Academic): 360
+Sports Marks: 8
+Final Result (Total + Sports): 368
+Average: 73.6
