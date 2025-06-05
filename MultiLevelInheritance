@@ -1,0 +1,87 @@
+using System;
+
+class Student
+{
+    protected int rno;
+    protected string name;
+    protected int m1, m2, m4, m5;
+    protected int total;
+
+    public void GetData()
+    {
+        Console.Write("Enter Roll No: ");
+        rno = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter Name: ");
+        name = Console.ReadLine();
+
+        Console.Write("Enter marks for Subject 1: ");
+        m1 = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter marks for Subject 2: ");
+        m2 = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter marks for Subject 4: ");
+        m4 = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter marks for Subject 5: ");
+        m5 = Convert.ToInt32(Console.ReadLine());
+    }
+
+    public void PutData()
+    {
+        Console.WriteLine("Roll No: " + rno);
+        Console.WriteLine("Name: " + name);
+        Console.WriteLine("Total Marks (Academic): " + total);
+    }
+
+    public void CalculateTotal()
+    {
+        total = m1 + m2 + m4 + m5;
+    }
+}
+
+class Sports : Student
+{
+    protected int sportsMarks;
+
+    public void GetSportsMarks()
+    {
+        Console.Write("Enter Sports Marks: ");
+        sportsMarks = Convert.ToInt32(Console.ReadLine());
+    }
+}
+
+class Result : Sports
+{
+    private int finalResult;
+    private float average;
+
+    public void CalculateFinalResult()
+    {
+        CalculateTotal(); // from Student
+        finalResult = total + sportsMarks;
+        average = finalResult / 5.0f;
+    }
+
+    public void ShowResult()
+    {
+        PutData(); // from Student
+        Console.WriteLine("Sports Marks: " + sportsMarks);
+        Console.WriteLine("Final Result (Total + Sports): " + finalResult);
+        Console.WriteLine("Average: " + average);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Result r = new Result();
+        r.GetData();
+        r.GetSportsMarks();
+        r.CalculateFinalResult();
+        Console.WriteLine("\n----- Final Report -----");
+        r.ShowResult();
+    }
+}
