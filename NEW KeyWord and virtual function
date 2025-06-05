@@ -1,0 +1,111 @@
+using System;
+using System.Net.Mail;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+namespace Mobile
+{
+
+   
+        class Mob
+    {
+
+        int Mobile_No;
+
+         string CompanyName;
+
+
+       public  Mob() { 
+        
+             Mobile_No = 1245389725;
+            CompanyName = " None";
+        }
+
+       public  Mob(int Mobile_No ,string CompanyName)
+        {
+            this.Mobile_No = Mobile_No;
+            this.CompanyName = CompanyName;
+        }
+
+
+        public virtual void Sms()
+        {
+            Console.WriteLine(" this is default messages");
+        }
+
+
+        public  void  calling()
+        {
+            Console.WriteLine(" This is the calling Method Defaullt");
+        }
+
+      
+    }
+
+
+    class Samsung : Mob
+    {
+        public override void Sms() 
+        {
+           Console.WriteLine("This is the Samsung Method ");
+        }
+
+          new  void  calling()
+        {
+            Console.WriteLine(" This is the new Samsung Method");
+        }
+
+
+
+      
+    }
+
+
+    class Apple:Mob
+    {
+        public override void Sms()
+        {
+            Console.WriteLine(" This is apple sms");
+        }
+
+        new void calling() 
+        {
+            Console.WriteLine(" This is for the Apple Mobile");
+                }
+    }
+   
+    
+
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Mob m1 = new Mob();
+            m1.calling(); // Default
+            m1.Sms();     // Default
+
+            Mob m2 = new Samsung();
+            m2.calling(); // Base class version, because method is hidden not overridden
+            m2.Sms();     // Overridden Samsung version
+
+            Mob m3 = new Apple();
+            m3.calling(); // Base class version, because method is hidden not overridden
+            m3.Sms();     // Overridden Apple version
+
+            // To call the new calling methods, use the actual type:
+           Console.WriteLine("\nCalling via actual types:");
+            Samsung s1 = new Samsung();
+           s1.calling(); // Samsung version
+
+            Apple a1 = new Apple();
+            a1.calling(); // Apple version
+
+
+
+
+
+        }
+    }
+}
