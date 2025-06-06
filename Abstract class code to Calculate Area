@@ -1,0 +1,94 @@
+namespace shape
+{
+    internal class Program
+    {
+
+        abstract class Shape
+        {
+            public abstract void Area();
+        }
+
+        class Square : Shape
+        {
+
+
+            double length;
+
+
+            double area;
+
+
+            public override void Area()
+            {
+
+                Console.WriteLine("Enter the length");
+
+                length = Convert.ToDouble(Console.ReadLine());
+                area = length * length;
+
+                Console.WriteLine("THE Area is {0}", area);
+            }
+
+
+
+        }
+
+
+
+
+        class Triangle : Shape
+        {
+            double length;
+            double width;
+            double area;
+            public override void Area()
+            {
+
+                Console.WriteLine("Enter the length");
+                length = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Enter the width");
+                width = Convert.ToDouble(Console.ReadLine());
+
+
+                area = length * width * 0.5;
+
+                Console.WriteLine("The area is " + area);
+            }
+        }
+
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Choose the shape to calculate area:");
+            Console.WriteLine("1. Square");
+            Console.WriteLine("2. Triangle");
+            Console.Write("Enter your choice (1 or 2): ");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            Shape shape;
+
+            switch (choice)
+            {
+                case 1:
+                    shape = new Square();
+                    break;
+                case 2:
+                    shape = new Triangle();
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice.");
+                    return;
+
+
+
+
+
+            }
+            shape.Area();
+            
+        }
+      
+      
+    }
+}
