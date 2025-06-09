@@ -1,0 +1,96 @@
+using System;
+
+abstract class Bank
+{
+    protected double balance;
+
+    public Bank(double initialBalance)
+    {
+        balance = initialBalance;
+    }
+
+    // Abstract methods
+    public abstract void Credit(double amount);
+    public abstract void Debit(double amount);
+    public abstract void GetStatement();
+}
+
+class Axis : Bank
+{
+    public Axis(double initialBalance) : base(initialBalance) { }
+
+    public override void Credit(double amount)
+    {
+        balance += amount;
+        Console.WriteLine($"[Axis] Credited: {amount}. New Balance: {balance}");
+    }
+
+    public override void Debit(double amount)
+    {
+        if (amount <= balance)
+        {
+            balance -= amount;
+            Console.WriteLine($"[Axis] Debited: {amount}. New Balance: {balance}");
+        }
+        else
+        {
+            Console.WriteLine("[Axis] Insufficient balance for debit.");
+        }
+    }
+
+    public override void GetStatement()
+    {
+        Console.WriteLine($"[Axis] Current Balance: {balance}");
+    }
+}
+
+class HDFC : Bank
+{
+    public HDFC(double initialBalance) : base(initialBalance) { }
+
+    public override void Credit(double amount)
+    {
+        balance += amount;
+        Console.WriteLine($"[HDFC] Credited: {amount}. New Balance: {balance}");
+    }
+
+    public override void Debit(double amount)
+    {
+        if (amount <= balance)
+        {
+            balance -= amount;
+            Console.WriteLine($"[HDFC] Debited: {amount}. New Balance: {balance}");
+        }
+        else
+        {
+            Console.WriteLine("[HDFC] Insufficient balance for debit.");
+        }
+    }
+
+    public override void GetStatement()
+    {
+        Console.WriteLine($"[HDFC] Current Balance: {balance}");
+    }
+}
+
+class Program
+{
+    public static void Main(string[] args)
+    {
+        Bank bank;
+
+        // Using base class reference to Axis instance
+        bank = new Axis(1000);
+        bank.Credit(500);
+        bank.Debit(200);
+        bank.GetStatement();
+
+        Console.WriteLine();
+
+        // Using base class reference to HDFC instance
+        bank = new HDFC(2000);
+        bank.Credit(1000);
+        bank.Debit(3500); // Should show insufficient balance
+        bank.GetStatement();
+    }
+}
