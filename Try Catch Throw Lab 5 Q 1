@@ -1,0 +1,111 @@
+using System;
+
+class  Account
+{
+    
+    int accNo;
+    string Name;
+    protected double Balance;
+    
+   public Account (int accNo,string Name, double Balance)
+    {
+        this.accNo=accNo;
+        this.Name=Name;
+        this. Balance= Balance;
+    }
+
+
+public void Deposit()
+{
+    double Amount;
+    
+    try{
+        Console.WriteLine("Enter the amount");
+        
+        Amount=Convert.ToDouble(Console.ReadLine());
+        
+        if(Amount>0)
+        {
+            Balance=Balance+Amount;
+            
+            Console.WriteLine("The amount is "+Balance);
+        }
+        
+        else
+        {
+            Console.WriteLine("The amount should be Greater than 0");
+        }
+        
+    }
+    catch(Exception ex)
+    {
+        Console.WriteLine("The Amount should be greater than 0");
+        
+    }
+    
+    
+    
+}
+
+public void WithDraw()
+{
+    double Amount;
+    
+    
+    try
+    {
+    Console.WriteLine("Enter the Amount to be With drawn");
+    Amount=Convert.ToDouble(Console.ReadLine());
+    
+    
+    if(Balance<=1000)
+    {
+        Console.WriteLine("The Balance Should Be greataer Than 1000");
+    }
+    else if(Amount>=Balance)
+    {
+        Console.WriteLine("This is not allowed");
+    }
+    else
+    {
+        Balance=Balance-Amount;
+    }
+    
+    }
+    catch(Exception ex)
+    {
+        Console.WriteLine("The amount is invalid");
+    }
+}
+
+public void Display()
+    {
+         Console.WriteLine($"Account No: {accNo}, Name: {Name}, Balance: {Balance}");
+    }
+
+
+
+
+}
+
+
+
+
+
+class Program
+{
+    public static void Main(String [] args)
+    {
+        
+        Account acc = new Account(101, "John", 5000);
+        acc.Display();      // Show initial details
+        acc.Deposit();      // Ask for deposit
+        acc.Display();      // Show updated details
+        acc.WithDraw();
+        acc.Display();
+        
+        
+    }
+}
+
+
