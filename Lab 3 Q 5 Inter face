@@ -1,0 +1,43 @@
+using System;
+
+// Create two interfaces IStudentDetails and ITeacherDetails. Both contain same 
+// method ShowDetails(). Implement both interfaces in Division class.
+
+interface IStudentDetails
+{
+    void ShowDetails();
+}
+
+interface ITeacherDetails
+{
+    void ShowDetails();
+}
+
+class Division : IStudentDetails, ITeacherDetails
+{
+    void IStudentDetails.ShowDetails()
+    {
+        Console.WriteLine("Show student details");
+    }
+
+    void ITeacherDetails.ShowDetails()
+    {
+        Console.WriteLine("Show teacher details");
+    }
+}
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        // ✅ Create Division object
+        Division division = new Division();
+
+        // ✅ Cast to respective interfaces
+        IStudentDetails student = division;
+        student.ShowDetails(); // Output: Show student details
+
+        ITeacherDetails teacher = division;
+        teacher.ShowDetails(); // Output: Show teacher details
+    }
+}
