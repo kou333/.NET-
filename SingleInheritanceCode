@@ -1,0 +1,50 @@
+using System;
+
+namespace Inherit
+{
+    class Shape
+    {
+        
+        protected int Width;
+        
+        protected int Height;
+        
+        public void setWidth(int w)
+        {
+            Width=w;
+        }
+        
+        public void setHeight(int height)
+        {
+            Height=height;
+        }
+    }
+    
+     class Rectangle:Shape
+    {
+        public int getArea()
+        {
+            return (Width*Height);
+        }
+    }
+    
+    
+    
+    
+
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        Rectangle rect=new Rectangle();
+        
+        rect.setHeight(10);
+        rect.setWidth(10);
+        
+         Console.WriteLine("Total area: {0}",  rect.getArea());
+        
+    }
+}
+
+}
