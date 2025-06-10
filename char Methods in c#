@@ -1,0 +1,35 @@
+| Method                       | Description                                            | Example                             |
+| ---------------------------- | ------------------------------------------------------ | ----------------------------------- |
+| `Char.IsDigit(char)`         | Checks if the character is a digit (0-9).              | `Char.IsDigit('5') // true`         |
+| `Char.IsLetter(char)`        | Checks if the character is a letter (A-Z, a-z, etc.).  | `Char.IsLetter('A') // true`        |
+| `Char.IsLetterOrDigit(char)` | Checks if it is a letter or digit.                     | `Char.IsLetterOrDigit('1') // true` |
+| `Char.IsWhiteSpace(char)`    | Checks if the character is a whitespace.               | `Char.IsWhiteSpace(' ') // true`    |
+| `Char.IsUpper(char)`         | Checks if the character is uppercase.                  | `Char.IsUpper('X') // true`         |
+| `Char.IsLower(char)`         | Checks if the character is lowercase.                  | `Char.IsLower('x') // true`         |
+| `Char.IsControl(char)`       | Checks if it is a control character (like `\n`, `\t`). | `Char.IsControl('\n') // true`      |
+| `Char.IsPunctuation(char)`   | Checks if it is punctuation.                           | `Char.IsPunctuation('.') // true`   |
+
+
+Character Conversion Methods
+
+| Method               | Description                      | Example                    |
+| -------------------- | -------------------------------- | -------------------------- |
+| `Char.ToUpper(char)` | Converts character to uppercase. | `Char.ToUpper('a') // 'A'` |
+| `Char.ToLower(char)` | Converts character to lowercase. | `Char.ToLower('Z') // 'z'` |
+
+ Character to Numeric Value
+
+
+| Method                       | Description                                                                                    | Example                            |
+| ---------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------- |
+| `Char.GetNumericValue(char)` | Returns numeric value of digit character (e.g., '5') as `double`. Returns `-1` if not numeric. | `Char.GetNumericValue('8') // 8.0` |
+
+ Other Useful Methods
+
+| Method                            | Description                                         | Example                                       |
+| --------------------------------- | --------------------------------------------------- | --------------------------------------------- |
+| `Char.Compare(char, char)`        | Compares two characters. Returns int.               | `Char.Compare('a', 'b') // -1`                |
+| `Char.Equals(char, char)`         | Checks if two chars are equal.                      | `Char.Equals('a', 'a') // true`               |
+| `Char.ConvertToUtf32(char, char)` | Converts a surrogate pair to its UTF-32 code point. | Used for emoji or special Unicode characters. |
+
+
