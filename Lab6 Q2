@@ -1,0 +1,52 @@
+using System.Buffers;
+
+namespace Delegates_L6_Q2
+{
+
+
+public  delegate  void Mathoperation( double x, double y);
+    public class Maths
+    {
+
+        public void add(double x, double y)
+        {
+            Console.WriteLine($" The additio is  {x} +{y}={x+y}");
+        }
+
+        public void subtract(double x, double y)
+        {
+            Console.WriteLine($" The Subtraction is  {x}-{y}={x-y}");
+        }
+        public void multiply(double x, double y)
+        {
+            Console.WriteLine($" The multiplication is {x}*{y}={x*y}");
+        }
+        public void divide(double x, double y)
+        {
+            Console.WriteLine($" the division {x} /{y}={x/y}");
+        }
+
+
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Maths m1 = new Maths();
+
+
+            Mathoperation operations = m1.add;
+            operations += m1.subtract;
+            operations += m1.multiply;
+            operations += m1.divide;
+
+            Console.WriteLine("Performing operations on numbers 10 and 2:");
+            operations.Invoke(10, 2);
+
+
+
+        }
+
+    }
+}
