@@ -1,0 +1,36 @@
+using System;
+
+delegate void NoParamNoReturn();
+delegate int NoParamWithReturn();
+delegate int WithParamWithReturn(int a, int b);
+
+class Program
+{
+    static void Main()
+    {
+        // a) Anonymous method without parameters and without return type
+        NoParamNoReturn method1 = delegate () 
+        { 
+            Console.WriteLine("Anonymous method: No parameters, no return type"); 
+        };
+        method1();
+
+        // b) Anonymous method without parameters but with return type
+        NoParamWithReturn method2 = delegate () 
+        { 
+            Console.WriteLine("Anonymous method: No parameters, returns integer value");
+            return 42; 
+        };
+        int result1 = method2();
+        Console.WriteLine($"Returned value: {result1}");
+
+        // c) Anonymous method with parameters and with return type
+        WithParamWithReturn method3 = delegate (int a, int b) 
+        { 
+            Console.WriteLine($"Anonymous method: Parameters {a}, {b}, returns sum");
+            return a + b; 
+        };
+        int result2 = method3(10, 5);
+        Console.WriteLine($"Returned sum: {result2}");
+    }
+}
