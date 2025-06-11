@@ -1,0 +1,27 @@
+using System;
+
+public delegate string StringOperation(string input);
+
+public class TextProcessor
+{
+    public string Upper(string input)
+    {
+        return input.ToUpper();
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Create instance of TextProcessor
+        TextProcessor processor = new TextProcessor();
+
+        // Initialize delegate with Upper method (Unicast Delegate)
+        StringOperation operation = processor.Upper;
+
+        // Invoke delegate
+        string result = operation.Invoke("hello, world!");
+        Console.WriteLine($"Converted String: {result}");
+    }
+}
