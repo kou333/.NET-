@@ -1,0 +1,13 @@
+Concat() – It is used to concatenate two strings.
+Compare() – It is used to compare two specified String objects.
+Replace() – It replace specified old character with specified new character.
+Trim() – It removes all leading and trailing whitespace from the string.
+Remove() – It returns characters from a string.
+Split() – It splits a string into substrings based on specified delimiter characters.
+Substring() – It returns the substring of a given string.
+Copy() – It creates a new String instance that has the same value as a given String.
+IndexOf() – It returns the position of the specified character in the given string.
+Format() – It replaces one or more format elements in a string with the string representation.
+ToCharArray() – It converts the string to a char array.
+ToString() – It is used to return the instance of a string.
+ToLower() – It is used to convert the string into lowercase.
