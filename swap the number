@@ -1,0 +1,29 @@
+using System;
+
+public class HelloWorld
+{
+    // Use 'ref' to reflect changes outside the method
+    static void Swap(ref int a, ref int b)
+    {
+        a = a + b;
+        b = a - b;
+        a = a - b;
+    }
+
+    public static void Main(string[] args)
+    {
+        int a, b;
+
+        Console.WriteLine("Enter the first number:");
+        a = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine("Enter the second number:");
+        b = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine($"Before swap: a = {a}, b = {b}");
+
+        Swap(ref a, ref b);  // Call with 'ref'
+
+        Console.WriteLine($"After swap: a = {a}, b = {b}");
+    }
+}
