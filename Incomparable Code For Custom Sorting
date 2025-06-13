@@ -1,0 +1,80 @@
+using System;
+namespace IcompareaInterfaceExample
+{
+
+
+    internal class Program
+    {
+
+
+        internal class Student:IComparable<Student>
+        {
+           public int  Rn0{get; set;}
+            public String Name { get; set; }
+
+            public int Rn1 { get; set;}
+
+            public int CompareTo(Student ? other)
+            {
+                if (this.Rn0 < other.Rn0)
+                {
+                    return -1;
+                }
+                else if (this.Rn0 == other.Rn0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+
+                
+            }
+
+    }
+
+
+        static void Main(string[] args)
+        {
+           Student student = new Student();
+            student.Rn0 = 10;
+            student.Name = "ben";
+
+
+            Student student1 = new Student();
+            student1.Rn0 =11;
+            student1.Name = "steve";
+
+            Student student2= new Student();
+            student2.Rn0 = 12;
+            student2.Name = "josh";
+
+
+            List<Student> li= new List<Student>();  
+
+            li.Add(student);
+            li.Add(student2);
+            li.Add(student1);
+
+            foreach(Student a in li)
+            {
+                Console.WriteLine(a.Rn0+" "+a.Name);
+            }
+            Console.WriteLine(" after sorthing data");
+            li.Sort();
+
+
+
+            foreach (Student s in li)
+            {
+                Console.WriteLine(s.Rn0+" "+s.Name);
+            }
+            {
+                
+            }
+
+
+        }
+    }
+}
