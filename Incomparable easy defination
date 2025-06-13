@@ -1,0 +1,56 @@
+✅ What is IComparable?
+IComparable is an interface that helps you compare one object with another of the same type.
+
+Think of it like this:
+👉 If you have a list of objects (like students, books, or numbers), and you want to sort them, IComparable tells how to compare one item with another.
+
+✅ Why use it?
+So that your custom class (like Student, Book, etc.) can be sorted using built-in C# methods like .Sort().
+
+✅ What does it contain?
+Just one method:
+
+csharp
+Copy
+Edit
+int CompareTo(object other);
+Returns -1 → if the current object is less than the other
+
+Returns 0 → if they are equal
+
+Returns 1 → if the current object is greater than the other
+
+✅ Example in Easy Words
+Let’s say we have a Student class and we want to sort students based on marks:
+
+csharp
+Copy
+Edit
+using System;
+
+class Student : IComparable
+{
+    public string Name { get; set; }
+    public int Marks { get; set; }
+
+    public int CompareTo(object obj)
+    {
+        Student other = (Student)obj;
+
+        if (this.Marks > other.Marks)
+            return 1;
+        else if (this.Marks < other.Marks)
+            return -1;
+        else
+            return 0;
+    }
+}
+This says:
+
+If this.Marks is more, return 1 (this comes after)
+
+If less, return -1 (this comes before)
+
+If same, return 0 (same rank)
+
+✅ Summary (Like a Friend
