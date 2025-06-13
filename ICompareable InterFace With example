@@ -1,0 +1,67 @@
+✅ What is IComparable<T>?
+The IComparable<T> interface is used to define a natural ordering for objects of a class. It contains the method:
+
+csharp
+Copy
+Edit
+int CompareTo(T other);
+This method returns:
+
+< 0 → if the current object is less than other
+
+0 → if the current object is equal to other
+
+> 0 → if the current object is greater than other
+
+🔧 Interface Definition
+csharp
+Copy
+Edit
+public interface IComparable<T>
+{
+    int CompareTo(T other);
+}
+🧠 Why use it?
+To allow sorting or comparison between instances of your custom class using Sort(), Max(), etc.
+
+✅ Simple Example
+csharp
+Copy
+Edit
+using System;
+
+class Student : IComparable<Student>
+{
+    public int RollNo { get; set; }
+    public string Name { get; set; }
+
+    public int CompareTo(Student other)
+    {
+        // Compare based on RollNo
+        return this.RollNo.CompareTo(other.RollNo);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Student s1 = new Student { RollNo = 5, Name = "Alice" };
+        Student s2 = new Student { RollNo = 3, Name = "Bob" };
+
+        int result = s1.CompareTo(s2);
+
+        if (result < 0)
+            Console.WriteLine($"{s1.Name} comes before {s2.Name}");
+        else if (result > 0)
+            Console.WriteLine($"{s1.Name} comes after {s2.Name}");
+        else
+            Console.WriteLine($"{s1.Name} and {s2.Name} are same in order");
+    }
+}
+📝 Summary:
+IComparable<T> is used for natural object comparison.
+
+You must implement CompareTo(T other) in your class.
+
+It's most useful when using List<T>.Sort() or LINQ methods.
