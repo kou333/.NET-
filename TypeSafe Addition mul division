@@ -1,0 +1,95 @@
+using System.Linq.Expressions;
+
+namespace TypeSafe
+{
+    internal class Program
+    {
+
+        public static void Add<T>(T A, T B)
+        {
+            dynamic d1 = A;
+            dynamic d2 = B;
+
+            Console.WriteLine("the addition of  A and B is {0}",d1+d2);
+        }
+
+        public static void sub<T>(T A, T B)
+        {
+            dynamic d1 = A;
+            dynamic d2 = B;
+            if (d1 > d2)
+            {
+                Console.WriteLine("the subtraction of a and b is {0}", d1 - d2);
+            }
+            else
+            {
+                Console.WriteLine(" The subtraction is {0}", d2 - d1);
+            }
+
+            if(d1==d2)
+            {
+                Console.WriteLine("The numbers are equal no subtraction possible");
+            }
+        }
+
+
+        public static void mul<T> (T A, T B)
+        {
+            dynamic d1 = A;
+            dynamic d2 = B;
+
+            Console.WriteLine("the multiplication is {0}", d1 * d2);
+        }
+
+        public static void div<D>(D A,D b)
+        {
+            dynamic d1 = A;
+            dynamic d2 = b;
+            Console.WriteLine("the division is {0}", d1 / d2);
+        }
+
+        static void Main(string[] args)
+        {
+          
+
+            char choice;
+
+            Console.WriteLine("E tehr thre number  D");
+            int D1 = Convert.ToInt32(Console.ReadLine());
+            
+            Console.WriteLine("Enterb the number D1");
+                
+           
+            int D2=Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter the choice");
+
+            Console.WriteLine("A for addition  / S for subtraction / M for multiplication /D for dividon");
+
+            choice=Convert.ToChar(Console.ReadLine());
+
+
+            switch (choice)
+            {
+
+                case 'A':
+                         Add(D1, D2); break;
+                case 'S':
+                          sub(D1, D2); break;
+                case 'M':
+                         mul(D1, D2); break;
+
+                case 'D':
+                    div(D1, D2); break;
+
+
+            }
+
+
+
+
+
+
+        }
+    }
+}
