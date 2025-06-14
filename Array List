@@ -1,0 +1,164 @@
+Now, here's a quick quiz to test your understanding:
+
+✅ Quiz: C# Collection Framework
+1. Which collection allows only unique elements in C#?
+a) List
+b) ArrayList
+c) HashSet
+d) Stack
+
+2. What is the main advantage of List<T> over ArrayList?
+a) More memory
+b) Type safety
+c) Slower performance
+d) No generics
+
+3. Which collection uses FIFO (First In First Out)?
+a) Stack
+b) Queue
+c) List
+d) Dictionary
+
+4. In which namespace do you find generic collections?
+a) System.Text
+b) System.Collections
+c) System.Collections.Generic
+d) System.Linq
+
+5. Which of these allows key-value pairs with unique keys?
+a) List
+b) Dictionary
+c) Queue
+d) Stack
+
+Let me know if you'd like the quiz answers or a printable version of this quiz too! 
+
+
+
+
+
+
+
+You said:
+array methods in c#
+
+
+ChatGPT said:
+Here’s a detailed and easy-to-understand guide to the most useful Array methods in C#.
+
+🔹 What is an Array?
+An array in C# is a fixed-size collection of elements of the same data type, stored in contiguous memory locations.
+
+csharp
+Copy
+Edit
+int[] numbers = { 10, 20, 30, 40 };
+✅ Common Array Methods (from System.Array)
+C# provides a variety of methods through the System.Array class to work with arrays.
+
+1. Length
+Returns the number of elements in the array.
+
+csharp
+Copy
+Edit
+int[] arr = { 1, 2, 3 };
+Console.WriteLine(arr.Length);  // Output: 3
+2. Sort()
+Sorts the elements in ascending order.
+
+csharp
+Copy
+Edit
+int[] arr = { 30, 10, 20 };
+Array.Sort(arr);  // arr = {10, 20, 30}
+3. Reverse()
+Reverses the order of elements in the array.
+
+csharp
+Copy
+Edit
+int[] arr = { 1, 2, 3 };
+Array.Reverse(arr);  // arr = {3, 2, 1}
+4. IndexOf()
+Returns the index of the first occurrence of a value.
+
+csharp
+Copy
+Edit
+int[] arr = { 10, 20, 30 };
+int index = Array.IndexOf(arr, 20);  // Output: 1
+5. LastIndexOf()
+Returns the last index of a value.
+
+csharp
+Copy
+Edit
+int[] arr = { 10, 20, 30, 20 };
+int index = Array.LastIndexOf(arr, 20);  // Output: 3
+6. Clear()
+Sets a range of elements to zero or default.
+
+csharp
+Copy
+Edit
+int[] arr = { 1, 2, 3 };
+Array.Clear(arr, 0, 2);  // arr = {0, 0, 3}
+7. Copy()
+Copies elements from one array to another.
+
+csharp
+Copy
+Edit
+int[] source = { 1, 2, 3 };
+int[] dest = new int[3];
+Array.Copy(source, dest, 3);
+8. Exists()
+Checks if any element matches a condition.
+
+csharp
+Copy
+Edit
+int[] arr = { 1, 2, 3 };
+bool hasEven = Array.Exists(arr, x => x % 2 == 0);  // Output: true
+9. Find()
+Finds the first element that matches a condition.
+
+csharp
+Copy
+Edit
+int[] arr = { 1, 2, 3 };
+int result = Array.Find(arr, x => x > 1);  // Output: 2
+10. FindAll()
+Finds all elements that match a condition.
+
+csharp
+Copy
+Edit
+int[] arr = { 1, 2, 3, 4 };
+int[] evens = Array.FindAll(arr, x => x % 2 == 0);  // evens = {2, 4}
+11. Resize()
+Changes the size of an array (only with ref keyword).
+
+csharp
+Copy
+Edit
+int[] arr = { 1, 2 };
+Array.Resize(ref arr, 4);  // arr = {1, 2, 0, 0}
+📌 Note:
+Arrays are fixed-size by default.
+
+Use List<T> if you need a dynamically resizable collection.
+
+🧠 Summary Table
+Method	Purpose
+Sort()	Sorts elements in ascending order
+Reverse()	Reverses the array
+IndexOf()	Gets index of first occurrence
+Find()	Gets first matching element
+FindAll()	Gets all matching elements
+Clear()	Clears part of the array
+Copy()	Copies one array to another
+Exists()	Checks if a condition is met
+Resize()	Changes the size of the array (via ref)
+
