@@ -1,0 +1,34 @@
+🔤 What is the AsString() Method?
+The AsString() method is a custom method that you define in a class to return a human-readable string describing the object's state (its internal data). It is not built-in to C#, but it's commonly used to make it easy to display object information.
+
+🧱 In your Triangle class example:
+csharp
+Copy
+Edit
+public string AsString()
+{
+    return $"Base is {_base}, height is {_height}";
+}
+It returns a string like: "Base is 10, height is 5"
+
+It includes the values of the triangle’s base and height
+
+It follows the exact format required in the assignment
+
+🆚 How Is It Different from ToString()?
+C# provides a built-in method called ToString() which every class inherits from object. For example:
+
+csharp
+Copy
+Edit
+public override string ToString()
+{
+    return $"Base is {_base}, height is {_height}";
+}
+You could override ToString() instead of creating AsString(), but the task specifically asked for a method named AsString().
+
+| Feature        | `AsString()`                            | `ToString()`                             |
+| -------------- | --------------------------------------- | ---------------------------------------- |
+| Custom method? | Yes                                     | No, it's built-in to all C# objects      |
+| Purpose        | To show object info in custom format    | To return a string version of the object |
+| Required here? | ✅ Yes, based on assignment instructions | ❌ Not required in this case              |
