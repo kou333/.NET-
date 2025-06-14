@@ -1,0 +1,61 @@
+using System;
+
+public class HelloWorld
+{
+  static void Main(string [] args)
+
+    {
+        string str="the  debcb rc rbfb r";
+        string rev="";
+        
+        for(int i=str.Length-1; i>=0; i--)
+        {
+            rev=rev+str[i];
+        }
+        
+            Console.WriteLine("the out put is ,"rev);
+    }
+
+
+  *********************************************************************************************************************************************************************************************************************
+  *********************************************************************************************************************************************************************************************************************
+
+#USING FUNCTION CALL
+  
+  using System;
+
+public class HelloWorld
+{
+    
+    static string reverse(string str)
+    {
+        string rev="";
+        for(int i=str.Length-1; i>=0; i--)
+        {
+            
+            rev=rev+str[i];
+            
+        }
+        
+        
+        return rev;
+        
+        
+    }
+    
+  static void Main(string [] args)
+
+    {
+        
+        string str;
+        Console.WriteLine("Enter the string");
+        str=Console.ReadLine();
+        
+     string output=reverse(str);
+     
+     Console.WriteLine("the reverse output is "+ output);
+        
+        
+    }
+    
+}
