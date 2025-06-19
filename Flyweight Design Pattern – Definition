@@ -1,0 +1,77 @@
+🪶 Flyweight Design Pattern – Definition
+The Flyweight Pattern is used to minimize memory usage by sharing as much data as possible with other similar objects. It is especially useful when working with a large number of objects that share common data.
+
+🔧 Use Case
+Suppose you have thousands of objects with similar data (like characters in a document). Instead of creating a new object for every character, you can share common parts (like font, size, color) using flyweight objects.
+
+🧠 Key Concepts
+Intrinsic state: Shared data (can be reused).
+
+Extrinsic state: Context-specific data (passed in at runtime).
+
+📦 Example in C#
+csharp
+Copy
+Edit
+// Flyweight
+public class Character
+{
+    private char symbol;          // Intrinsic
+    private string font;          // Intrinsic
+
+    public Character(char symbol, string font)
+    {
+        this.symbol = symbol;
+        this.font = font;
+    }
+
+    public void Display(int size) // Extrinsic
+    {
+        Console.WriteLine($"Symbol: {symbol}, Font: {font}, Size: {size}");
+    }
+}
+
+// Flyweight Factory
+public class CharacterFactory
+{
+    private Dictionary<string, Character> characters = new Dictionary<string, Character>();
+
+    public Character GetCharacter(char symbol, string font)
+    {
+        string key = symbol + font;
+        if (!characters.ContainsKey(key))
+        {
+            characters[key] = new Character(symbol, font);
+        }
+        return characters[key];
+    }
+}
+
+// Usage
+class Program
+{
+    static void Main()
+    {
+        CharacterFactory factory = new CharacterFactory();
+
+        Character c1 = factory.GetCharacter('A', "Arial");
+        Character c2 = factory.GetCharacter('A', "Arial");
+        Character c3 = factory.GetCharacter('B', "Arial");
+
+        c1.Display(12); // Shared object, different size
+        c2.Display(14);
+        c3.Display(12);
+    }
+}
+✅ Benefits
+Saves memory by reusing existing objects.
+
+Ideal for applications with many repeated similar objects.
+
+🧩 Real-life Examples
+Text editors: characters with same font/size.
+
+Game development: trees, tiles, bullets.
+
+UI frameworks: reuse of buttons, icons.
+
