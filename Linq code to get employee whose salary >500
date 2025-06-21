@@ -1,0 +1,66 @@
+namespace Linq
+{
+    internal class Program
+    {
+
+        class Employee
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+           
+            public string LastName { get; set; }
+
+            public double Age { get; set; }
+
+            public double salary { get; set; }
+
+
+
+        }
+        static void Main(string[] args)
+        {
+            Employee e1 = new Employee();
+
+            e1.Id = 1;
+            e1.Name= "ram";
+            e1.LastName = "kumar";
+            e1.Age = 30;
+            e1.salary = 40000;
+
+            Employee e2 = new Employee();
+
+            e2.Id = 1;
+            e2.Name = "m";
+            e2.LastName = "dr";
+            e2.Age = 40;
+            e2.salary = 50000;
+
+            Employee e3= new Employee();
+            e3.Id = 3;
+            e3.Name = "dinesh";
+            e3.LastName = "sharma";
+            e3.Age = 30;
+            e3.salary = 500;
+
+            List<Employee> list = new List<Employee>(); 
+
+            list.Add(e1);
+            list.Add(e2);
+            list.Add(e3);
+
+
+            IEnumerable<Employee> query =from a in list
+                                        where a.salary > 500 
+                                        select a;
+
+            foreach(var emp  in query )
+            {
+                Console.WriteLine($"{emp.Name} {emp.salary} , Salary:{emp.salary}");
+
+            }
+
+
+
+        }
+    }
+}
