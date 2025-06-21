@@ -1,0 +1,21 @@
+namespace Linq2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            String[] language = { "cantonese" ," catalan ", "chinese" ," hindi","english","persian","russian"};
+
+
+            var result = from lang in language
+                         where lang.Contains('a')
+                         select lang;
+
+            foreach
+                ( var la in result )
+            {
+                Console.WriteLine(la);
+            }
+        }
+    }
+}
