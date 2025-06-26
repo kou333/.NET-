@@ -1,0 +1,43 @@
+using System;
+using System.Threading.Tasks;
+
+namespace ConsoleApp5
+{
+    internal class Program
+    {
+        static async Task Main(string[] args)
+        {
+            Task<int> result1 = Process1();
+            Task<int> result2 = Process2();
+
+            Console.WriteLine("After the two processes started");
+
+            int val = await result1;
+            DisplayResult(val);
+
+            val = await result2;
+            DisplayResult(val);
+        }
+
+        static async Task<int> Process1()
+        {
+            Console.WriteLine("Process1 started");
+            await Task.Delay(4000);
+            Console.WriteLine("Process1 completed");
+            return 10;
+        }
+
+        static async Task<int> Process2()
+        {
+            Console.WriteLine("Process2 started");
+            await Task.Delay(4000);
+            Console.WriteLine("Process2 completed");
+            return 20;
+        }
+
+        static void DisplayResult(int val)
+        {
+            Console.WriteLine("Result: " + val);
+        }
+    }
+}
