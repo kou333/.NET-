@@ -1,0 +1,53 @@
+using System;
+
+namespace MethodInjection
+{
+    internal class Program
+    {
+        // Interface representing an account type
+        interface IAccount
+        {
+            void PrintDetails();
+        }
+
+        // Concrete implementation: Savings Account
+        class SavingsAccount : IAccount
+        {
+            public void PrintDetails()
+            {
+                Console.WriteLine("Printing details of Savings account");
+            }
+        }
+
+        // Concrete implementation: Current Account
+        class CurrentAccount : IAccount
+        {
+            public void PrintDetails()
+            {
+                Console.WriteLine("Printing details of Current account");
+            }
+        }
+
+        // AccountPrinter class uses method injection to receive IAccount
+        class AccountPrinter
+        {
+            // Method Injection: dependency (IAccount) is passed as a method parameter
+            public void Print(IAccount account)
+            {
+                account.PrintDetails();
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            // Create an object of AccountPrinter
+            AccountPrinter printer = new AccountPrinter();
+
+            // Create and inject SavingsAccount via method
+            printer.Print(new SavingsAccount());
+
+            // Create and inject CurrentAccount via method
+            printer.Print(new CurrentAccount());
+        }
+    }
+}
