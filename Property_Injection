@@ -1,0 +1,60 @@
+using System;
+
+namespace Property_Injection
+{
+    internal class Program
+    {
+        // The Account class depends on IAccount but receives it via a property, not a constructor — this is property injection
+        class Account
+        {
+            // This is the injected dependency (Property Injection)
+            public IAccount acc { get; set; }
+
+            // This method uses the injected dependency to perform an action
+            public void PrintAccount()
+            {
+                // Calls the method of the currently assigned IAccount implementation
+                acc.printdetails();
+            }
+        }
+
+        // Interface defining a contract that any account type must implement
+        interface IAccount
+        {
+            void printdetails(); // Method to print account details
+        }
+
+        // Concrete implementation of IAccount: represents a Savings Account
+        class SavingsAccount : IAccount
+        {
+            public void printdetails()
+            {
+                Console.WriteLine(" printing details of Savings account");
+            }
+        }
+
+        // Another implementation of IAccount: represents a Current Account
+        class CurrentAccount : IAccount
+        {
+            public void printdetails()
+            {
+                Console.WriteLine(" printing details of current account");
+            }
+        }
+
+        // Entry point of the application
+        static void Main(string[] args)
+        {
+            // Create an object of Account class
+            Account a = new Account();
+
+            // Injecting a SavingsAccount into the 'acc' property of Account (property injection)
+            a.acc = new SavingsAccount();
+            a.PrintAccount(); // Output: printing details of Savings account
+
+            // Injecting a CurrentAccount into the same 'acc' property
+            a.acc = new CurrentAccount();
+            a.PrintAccount(); // Output: printing details of current account
+        }
+    }
+}
