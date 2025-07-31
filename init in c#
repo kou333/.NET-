@@ -38,4 +38,35 @@ public record Person
 }
 Records and init work together to create clean, immutable data models.
 
-Let me know if you want a version-safe alternative (e.g., for older C# versions).
+
+
+
+using System;
+
+namespace InitPropertyExample
+{
+    class Student
+    {
+        public string Name { get; init; }
+        public int RollNo { get; init; }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Using init-only properties
+            var student = new Student
+            {
+                Name = "Koustubh",
+                RollNo = 101
+            };
+
+            Console.WriteLine($"Name: {student.Name}, RollNo: {student.RollNo}");
+
+            // ❌ This will give a compile-time error:
+            // student.Name = "New Name";
+        }
+    }
+}
+
