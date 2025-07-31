@@ -1,0 +1,71 @@
+using System;
+namespace CountructorInjection
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            // Create an instance of SavingAccount (implements IAccount)
+            IAccount a = new SavingAccount();
+
+            // Inject the dependency into Account via constructor
+            Account ac = new Account(a);
+
+            // Use the injected dependency
+            ac.printAccount(); // Output: Printing details of savings account
+
+            // Create another instance of CurrentAccount
+            IAccount a1 = new CurrentAccount();
+
+            // Inject the new dependency into another Account object
+            Account a2 = new Account(a1);
+
+            // Mistake here: calling ac.printAccount() again instead of a2
+            // Should be: a2.printAccount();
+            ac.printAccount(); // This will again print savings account
+
+        }
+
+        // Account class depends on IAccount (dependency)
+        class Account
+        {
+            IAccount iacc;
+
+            // Constructor Injection — IAccount is passed here
+            public Account(IAccount iacc)
+            {
+                this.iacc = iacc;
+            }
+
+            // Method to call the injected dependency's functionality
+            public void printAccount()
+            {
+                iacc.printAccount();
+            }
+        }
+
+        // Interface to define a contract for account types
+        interface IAccount
+        {
+            void printAccount();
+        }
+
+        // SavingsAccount implements IAccount
+        class SavingAccount : IAccount
+        {
+            public void printAccount()
+            {
+                Console.WriteLine("Printing details of savings account");
+            }
+        }
+
+        // CurrentAccount also implements IAccount
+        class CurrentAccount : IAccount
+        {
+            public void printAccount()
+            {
+                Console.WriteLine(" print details of current account");
+            }
+        }
+    }
+}
